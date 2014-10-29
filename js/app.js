@@ -51,7 +51,7 @@ $(document).ready(function() {
         var tile = img.data('tile');
         img.fadeOut(100, function() {
             if(tile.flipped) {
-                img.attr('src', 'img/tile-back.png');
+                img.attr('src', 'tileBack');
             }
             else {
                  img.attr('src', tile.src);
@@ -63,11 +63,11 @@ $(document).ready(function() {
 
     var startTime = _.now();
     var timer = window.setInterval(function() {
-        var elapsedSecond = Math.floor((_.now() - startTime) / 1000);
-        $('#elapsed-second').text(elapsedSecond);
+        var elapsedSeconds = Math.floor((_.now() - startTime) / 1000);
+        $('#elapsed-second').text(elapsedSeconds);
 
-        if (elapsedSecond >= 10) {
+        if (elapsedSeconds >= 10) {
             window.clearInterval(timer);
         }
      }, 1000);
-});
+});// jQuery ready function
