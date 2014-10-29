@@ -5,7 +5,7 @@ $(document).ready(function() {
     
     for (idx = 1; idx <= 32; ++idx) {
         tiles.push({
-           tileNm: idx,
+           tileNum: idx,
             src: 'img/tile' + idx + '.jpg'
         });
     }
