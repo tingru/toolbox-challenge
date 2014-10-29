@@ -2,6 +2,7 @@
 $(document).ready(function() {
     var tiles =[];
     var idx;
+    
     for (idx = 1; idx <= 32; ++idx) {
         tiles.push({
            tileNm: idx,
@@ -21,11 +22,10 @@ $(document).ready(function() {
         tilePairs.push(_.clone(tile));
         tilePairs.push(_.clone(tile));
     });
-
     tilePairs = _.shuffle(tilePairs);
 
     console.log(tilePairs);
-
+    var tileBack = 'img/tile-back.png';
     var gameBoard = $('#game-board');
     var row = $(document.createElement('div'));
     var img;
