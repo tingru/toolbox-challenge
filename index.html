@@ -2,17 +2,33 @@
 <html>
     <head lang="en">
         <meta charset="UTF-8">
-        <title></title>
-        <link rel="stylesheet" href="css/main.css"> </link>
+        <title>- Memory Game -</title>
+        <link rel="shortcut icon" href="img/icon.png">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     </head>
     <body>
-        <h1>Memory!</h1>
-        <p id="elapsed-seconds"></p>
+    <main class="container-fluid">
+        <header class="row">
+        <h1>Memory Game</h1>
+        <p>Pair Them All !</p>
+        </header>
+    </main>
 
 
-        <div id="game-board"></div>
+        <button type="reset" id="reset-button">Start the Game!</button>
 
-        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>>
+        <div id="informationBar" class="row">
+            <p id="elapsed-seconds"></p>
+            <p id="matches-times"></p>
+            <p id="mistakes-times"></p>
+            <p id="remaining-pairs"></p>
+        </div>
+
+
+        <div id="game-board" class="row"></div>
+
+        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
         <script src="js/app.js"></script>
 

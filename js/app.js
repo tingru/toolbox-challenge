@@ -7,10 +7,13 @@ $(document).ready(function() {
         tiles.push({
            tileNum: idx,
             src: 'img/tile' + idx + '.jpg'
+
         });
     }
 
+
     console.log(tiles);
+
     var shuffledTiles = _.shuffle(tiles);
     console.log(shuffledTiles);
 
@@ -25,12 +28,13 @@ $(document).ready(function() {
     tilePairs = _.shuffle(tilePairs);
 
     console.log(tilePairs);
+
     var tileBack = 'img/tile-back.png';
     var gameBoard = $('#game-board');
     var row = $(document.createElement('div'));
     var img;
     _.forEach(tilePairs, function(tile, elemIndex) {
-    if (elemIndex > 0 && !elemIndex % 4) {
+    if (elemIndex > 0 && 0 == elemIndex % 4) {
         gameBoard.append(row);
         row = $(document.createElement('div'));
     }
@@ -46,7 +50,7 @@ $(document).ready(function() {
     });
     gameBoard.append(row);
 
-    $('#game-broad img').click(function() {
+    $('#game-board img').click(function() {
         var img = $(this);
         var tile = img.data('tile');
         img.fadeOut(100, function() {
