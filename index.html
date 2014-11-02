@@ -8,40 +8,46 @@
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     </head>
     <body>
-    <main class="container-fluid">
         <header class="row">
-        <h1>Memory Game</h1>
-        <p>Pair Them All !</p>
+            <h1>Challenging Memory Game</h1>
         </header>
-    </main>
 
+        <button type="button" id="reset-button" class="btn btn-default">Start the Game!</button>
 
-        <button type="reset" id="reset-button">Start the Game!</button>
         <section class="row informationBar">
             <div class="col-md-3">
-                <h2>Time:</h2>
+                <h3>Time:</h3>
                 <p id="elapsed-seconds"></p>
-             </div>
+            </div>
             <div class="col-md-3">
-                <h2>Match count:</h2>
-                <p id="matches-times">0</p>
-             </div>
-            <div class="col-md-3">
-                <h2>Missed count:</h2>
-                <p id="mistakes-times">0</p>
-             </div>
-            <div class="col-md-3">
-                <h2>Remaining pair:</h2>
+                <h3>Remaining pair:</h3>
                 <p id="remaining-pairs">8</p>
-             </div>
+            </div>
+            <div class="col-md-3">
+                <h3>Matched count:</h3>
+                <p id="matches-times">0</p>
+            </div>
+            <div class="col-md-3">
+                <h3>Missed count:</h3>
+                <p id="mistakes-times">0</p>
+            </div>
         </section>
 
-
+        <p id="instruction">Find all the matched pairs!</p>
         <div id="game-board" class="row"></div>
+
+        <section class="row messge">
+            <p id="message-box" class="row invalid"> </p>
+        </section>
+
+        <footer>
+            <P><a href="http://en.wikipedia.org/wiki/Concentration_(game)">Need more game instruction?</a><p>
+        </footer>
 
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
         <script src="js/app.js"></script>
-
+        
+        
     </body>
 </html>

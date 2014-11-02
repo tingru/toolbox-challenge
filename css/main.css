@@ -12,11 +12,42 @@ body {
     margin-bottom: 5px;
 }
 
-h1 {
-    color:darkblue;
+#game-board img {
+    border: 4px solid #000000
+}
+
+header {
+    font-size: 300%;
+    margin: 0;
+    color: darkblue;
     text-align: center;
 }
 
-#startBnt {
+footer {
+    text-align: right;
+}
 
+#elapsed-seconds, #mistakes-times {
+    font-size: 140%;
+    color: #FF0000;
+}
+
+#remaining-pairs, #matches-times {
+    font-size: 140%;
+    color: #00FF00;
+}
+
+.row.completed {
+    font-size: 200%;
+    color: #00FF00;
+}
+
+.row.valid {
+    font-size: 120%;
+    color: #000000;
+}
+
+.row.invalid {
+    font-size: 120%;
+    color: #FF0000;
 }

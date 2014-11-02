@@ -3,6 +3,7 @@ $(document).ready(function () {
     var tiles = [];
     var tileBack = 'img/tile-back.png';
     var gameBoard = $('#game-board');
+    var messageBox = $('#message-box');
     var idx;
     var flippedImages = [];
     var matchedCount = 0;
@@ -59,19 +60,17 @@ $(document).ready(function () {
         var currentTile = img.data('tile');
         var isMatched = img.data('matched');
         if (isMatched) {
-            // flag error:
-            alert("You already found a matched for this one. Try clicking on other hidden tiles");
+            messageBox.text("You already got this. Try clicking on other hidden tiles.");
+            messageBox.attr('class', 'row invalid');
             return;
+        } else {
+            messageBox.text("");
         }
         img.data('matched', true);
         flipTile(img);
 
         if (flippedImages.length == 0) {
             flippedImages.push(img);
-        } else if (flippedImages[0] === img) {
-            // flag error:
-            alert("Don't click on the same tile.");
-            return;
         } else {
             // validating two tiles
             var otherImg = flippedImages[0];
@@ -84,13 +83,28 @@ $(document).ready(function () {
                 matchedCount++;
                 remainingPairs--;
                 $('#matches-times').text(matchedCount);
+                $('#matches-times').slideDown(500);
                 $('#remaining-pairs').text(remainingPairs);
+                $('#remaining-pairs').slideDown(500);
                 
+                // completed the game
+                if (remainingPairs == 0) {
+                    window.clearInterval(timer);
+                    messageBox.text("Awesome! You found all pairs! Try again?");
+                    messageBox.attr('class', 'row completed');
+                    messageBox.animate({
+                        fontSize: '3em'
+                    }, "slow");
+                } else {
+                    messageBox.text("Good job!");
+                    messageBox.attr('class', 'row valid');
+                }
             } else {
                 // not a match
                 // increase the missing counter
                 missedCount++;
                 $('#mistakes-times').text(missedCount);
+                $('#mistakes-times').slideDown(500);
 
                 img.data('matched', false);
                 otherImg.data('matched', false);
@@ -119,10 +133,7 @@ $(document).ready(function () {
     }
 
     function onTimer() {
-        var elapsedSeconds = Math.floor((_.now() - startTime) / 1000);
-        if (remainingPairs == 0) {
-            window.clearInterval(timer);
-        }
+        var elapsedSeconds = Math.floor((_.now() - startTime) / 1000);        
         $('#elapsed-seconds').text(elapsedSeconds);
     }
 
@@ -132,12 +143,18 @@ $(document).ready(function () {
         missedCount = 0;
         remainingPairs = 8;
         startTime = _.now();
-        //$('#elapsed-seconds').text("0");
+        
         $('#matches-times').text(matchedCount);
         $('#mistakes-times').text(missedCount);
         $('#remaining-pairs').text(remainingPairs);
         gameBoard.empty();
         createPairs();
         $('img').hide().fadeIn(1000);
+
+        messageBox.text("");
+        messageBox.attr('class', 'row invalid');
+        messageBox.css({
+            fontSize: '1em'
+        });
     }
 });// jQuery ready function
