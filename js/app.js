@@ -16,12 +16,13 @@ $(document).ready(function () {
             src: 'img/tile' + idx + '.jpg'
         });
     }
-    onReset();
-
+    
     var startTime = _.now();
     var timer = window.setInterval(onTimer, 1000);
+    // on click of the Start button
+    $('#reset-button').click(onReset);
 
-    $('#reset-button').click(onReset); // on click of the Start button
+    onReset();    
 
     function createPairs() {
         var shuffledTiles = _.shuffle(tiles);
@@ -75,8 +76,8 @@ $(document).ready(function () {
             // validating two tiles
             var otherImg = flippedImages[0];
             var otherTile = otherImg.data('tile');
-            console.log("otherTile: " + otherTile.tileNum);
-            console.log("currentTile: " + currentTile.tileNum);
+            //console.log("otherTile: " + otherTile.tileNum);
+            //console.log("currentTile: " + currentTile.tileNum);
             if (otherTile.tileNum == currentTile.tileNum) {
                 // found a match
                 // increase the match counter
@@ -138,7 +139,7 @@ $(document).ready(function () {
     }
 
     function onReset() {
-        console.log("onReset called.");
+        console.log("resetting the game.");
         matchedCount = 0;
         missedCount = 0;
         remainingPairs = 8;
