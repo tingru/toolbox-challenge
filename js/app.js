@@ -17,8 +17,8 @@ $(document).ready(function () {
         });
     }
     
-    var startTime = _.now();
-    var timer = window.setInterval(onTimer, 1000);
+    var startTime;
+    var timer;
     // on click of the Start button
     $('#reset-button').click(onReset);
 
@@ -57,6 +57,10 @@ $(document).ready(function () {
     }
 
     function onClick() {
+        if (remainingPairs == 0) {
+            messageBox.text("This game is over. Click the button at top to start new game.");
+            return;
+        }
         var img = $(this);
         var currentTile = img.data('tile');
         var isMatched = img.data('matched');
@@ -143,11 +147,11 @@ $(document).ready(function () {
         matchedCount = 0;
         missedCount = 0;
         remainingPairs = 8;
-        startTime = _.now();
         
         $('#matches-times').text(matchedCount);
         $('#mistakes-times').text(missedCount);
         $('#remaining-pairs').text(remainingPairs);
+        $('#elapsed-seconds').text("0");
         gameBoard.empty();
         createPairs();
         $('img').hide().fadeIn(1000);
@@ -157,5 +161,9 @@ $(document).ready(function () {
         messageBox.css({
             fontSize: '1em'
         });
+
+        startTime = _.now();
+        window.clearInterval(timer);
+        timer = window.setInterval(onTimer, 1000);
     }
 });// jQuery ready function
