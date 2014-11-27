@@ -6,7 +6,6 @@ $(document).ready(function () {
     var messageBox = $('#message-box');
     var idx;
     var flippedImages = [];
-    var matchedCount = 0;
     var missedCount = 0;
     var remainingPairs = 8;
 
@@ -22,8 +21,6 @@ $(document).ready(function () {
     // on click of the Start button
     $('#reset-button').click(onReset);
 
-    onReset();    
-
     function createPairs() {
         var shuffledTiles = _.shuffle(tiles);
         var selectedTiles = shuffledTiles.slice(0, 8);
@@ -33,6 +30,7 @@ $(document).ready(function () {
             tilePairs.push(_.clone(tile));
             tilePairs.push(_.clone(tile));
         });
+
         tilePairs = _.shuffle(tilePairs);
 
         var row = $(document.createElement('div'));
@@ -63,8 +61,7 @@ $(document).ready(function () {
         }
         var img = $(this);
         var currentTile = img.data('tile');
-        var isMatched = img.data('matched');
-        if (isMatched) {
+        if (img.data('matched')) {
             messageBox.text("You already got this. Try clicking on other hidden tiles.");
             messageBox.attr('class', 'row invalid');
             return;
@@ -84,10 +81,9 @@ $(document).ready(function () {
             //console.log("currentTile: " + currentTile.tileNum);
             if (otherTile.tileNum == currentTile.tileNum) {
                 // found a match
-                // increase the match counter
-                matchedCount++;
+                // decrese the remaining counter
                 remainingPairs--;
-                $('#matches-times').text(matchedCount);
+                $('#matches-times').text(8 - remainingPairs);
                 $('#matches-times').slideDown(500);
                 $('#remaining-pairs').text(remainingPairs);
                 $('#remaining-pairs').slideDown(500);
@@ -144,11 +140,10 @@ $(document).ready(function () {
 
     function onReset() {
         console.log("resetting the game.");
-        matchedCount = 0;
         missedCount = 0;
         remainingPairs = 8;
         
-        $('#matches-times').text(matchedCount);
+        $('#matches-times').text(0);
         $('#mistakes-times').text(missedCount);
         $('#remaining-pairs').text(remainingPairs);
         $('#elapsed-seconds').text("0");

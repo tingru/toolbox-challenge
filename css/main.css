@@ -3,6 +3,7 @@ body {
     background-color: black;
     font-size: 18px;
     text-align: center;
+    min-width: 400px;
 }
 
 #game-board img {
@@ -50,4 +51,40 @@ footer {
 .row.invalid {
     font-size: 120%;
     color: #FF0000;
+}
+
+@media (max-width: 992px) {
+    body {
+        font-size: 12px;
+    }
+
+    #game-board img {
+        height: 100px;
+        width: 100px;
+    }
+
+    header {
+        font-size: 200%;
+    }
+
+    #elapsed-seconds, #mistakes-times {
+        font-size: 90%;
+        color: #FF0000;
+    }
+
+    #remaining-pairs, #matches-times {
+        font-size: 90%;
+    }
+
+    .row.completed {
+        font-size: 130%;
+    }
+
+    .row.valid {
+        font-size: 80%;
+    }
+
+    .row.invalid {
+        font-size: 80%;
+    }
 }
